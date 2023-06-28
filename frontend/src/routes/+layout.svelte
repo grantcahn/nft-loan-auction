@@ -18,7 +18,8 @@
 		type ModalComponent
 	} from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
-	import CardModal from '$lib/components/CardModal.svelte';
+	import CardModal from '$lib/components/Modals/CardModal.svelte';
+	import SignInModal from '$lib/components/Modals/SignInModal.svelte';
 
 	const t: ToastSettings = {
 		message: 'menu opened'
@@ -33,6 +34,9 @@
 		// Custom Modal 1
 		card: {
 			ref: CardModal
+		},
+		signIn: {
+			ref: SignInModal
 		}
 	};
 </script>
@@ -43,12 +47,14 @@
 	<Navigation />
 </Drawer>
 
-<AppShell slotSidebarLeft="w-0 md:w-52 bg-surface-500/10">
+<AppShell>
 	<svelte:fragment slot="header"
-		><AppBar>
+		><AppBar padding="px-10 py-6">
 			<svelte:fragment slot="lead">
 				<a href="/"><strong class="text-4xl">Basket</strong></a></svelte:fragment
 			>
+			<!-- Slot: default -->
+			<div class=""><Navigation/></div>
 			<svelte:fragment slot="trail">
 				<button class="md:hidden btn btn-sm" on:click={drawerOpen}>
 					<span>
@@ -59,17 +65,17 @@
 						</svg>
 					</span>
 				</button>
-				<Avatar
-					initials="JD"
-					background="bg-primary-500"
-					width="w-10"
-					class="hidden md:block"
-				/></svelte:fragment
+				<a href="/profile">
+					<Avatar
+						initials="JD"
+						background="bg-primary-500"
+						width="w-10"
+						class="hidden md:block"
+					/>
+				</a></svelte:fragment
 			>
 		</AppBar>
 	</svelte:fragment>
-	<svelte:fragment slot="sidebarLeft"><Navigation /></svelte:fragment>
-
 	<!-- (sidebarLeft) -->
 	<!-- (sidebarRight) -->
 	<!-- (pageHeader) -->
@@ -79,5 +85,4 @@
 	</div>
 	<!-- ---- / ---- -->
 	<!-- (pageFooter) -->
-	<svelte:fragment slot="footer">Footer</svelte:fragment>
 </AppShell>
