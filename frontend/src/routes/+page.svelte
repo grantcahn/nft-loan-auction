@@ -4,9 +4,7 @@
 	function modalComponentImage(): void {
 		const modal: ModalSettings = {
 			type: 'component',
-			component: 'signIn',
-			image: 'https://i.imgur.com/WOgTG96.gif',
-			meta: { source: 'Silly Symphonies - The Skeleton Dance' }
+			component: 'signIn'
 		};
 		modalStore.trigger(modal);
 	}
